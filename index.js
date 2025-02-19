@@ -23,6 +23,7 @@ app.use([
   cors({
     origin: process.env.FRONTEND_DOMAIN,
     credentials: true,
+     allowedHeaders: ["Content-Type", "Authorization"],
     methods: ["GET", "PUT", "PATCH", "PUT", "DELETE"],
   }),
   express.json(),
