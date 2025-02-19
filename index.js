@@ -52,7 +52,13 @@ app.use(passport.session());
 app.get("/", (req, res) => {
   res.json(" hello ");
 });
-
+app.options("*", (req, res) => {
+  res.header("Access-Control-Allow-Origin", process.env.FRONTEND_DOMAIN || "http://localhost:3000");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, PATCH, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.sendStatus(204);
+});
 app.post("/register", async (req, res) => {
   const { userName, email, password } = req.body;
   const salt = await bcrypt.genSalt(10);
