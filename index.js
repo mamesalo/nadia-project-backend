@@ -115,6 +115,10 @@ app.post(
     failureRedirect: process.env.FRONTEND_DOMAIN,
   }),
   (req, res) => {
+      res.header(
+      "Access-Control-Allow-Origin",
+      process.env.FRONTEND_DOMAIN || "http://localhost:3000"
+    );
     res.json({ success: "successfully logged in" });
   }
 );
